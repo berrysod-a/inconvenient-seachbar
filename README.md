@@ -31,3 +31,13 @@ We at Doofenschmirtz Inc. brings a solution to this by giving you the results yo
 ![seconduseless](https://github.com/user-attachments/assets/2c94788f-5a24-4465-a64d-e54126962013)
 
 ![thirduseless](https://github.com/user-attachments/assets/09c6edbe-5a8e-4c0e-b22f-241267eebe88)
+
+
+## Video
+
+## Team Contributions
+Nicole Mercy Daison : Idea, Code
+Theresa Antony : Idea, Code
+
+Made with ❤ at TinkerHub Useless Projects
+
