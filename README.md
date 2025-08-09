@@ -1,4 +1,4 @@
-# 🔍 Inconvenient Search Engine
+🔍 Inconvenient Search Engine
 
 A playful and frustrating search engine that makes finding what you're looking for intentionally difficult!
 
