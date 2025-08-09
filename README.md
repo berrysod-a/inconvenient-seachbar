@@ -1,6 +1,6 @@
 ![Thappanam](https://raw.githubusercontent.com/berrysod-a/inconvenient-seachbar/refs/heads/main/useless.png)
 
-## Inconvenient Search Bar
+## Project Name: Inconvenient Search Bar
 
 ## Team Name: Doofenschmirtz
 
@@ -9,7 +9,7 @@
 - Theresa Antony - Christ College of Engineering
 
 ## Project Description
-This is a search engine that gives back exactly what you did not search for. 
+This is a search engine that gives back exactly what you did not search for. When you search for something, instead of immediately getting what you asked.
 
 ## The Problem (that doesn't exist)
 People find it difficult when they get back the results they searched for immediately. This makes them productive and does not let them waste their time.
@@ -34,6 +34,8 @@ We at Doofenschmirtz Inc. brings a solution to this by giving you the results yo
 
 
 ## Video
+https://youtu.be/AgRLW8CO7EI?si=s-mVkBllVY3HRClh
+
 
 ## Team Contributions
 Nicole Mercy Daison : Idea, Code
