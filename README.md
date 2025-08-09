@@ -38,8 +38,8 @@ https://youtu.be/AgRLW8CO7EI?si=s-mVkBllVY3HRClh
 
 
 ## Team Contributions
-Nicole Mercy Daison : Idea, Code
-Theresa Antony : Idea, Code
+- Nicole Mercy Daison : Idea, Code
+- Theresa Antony : Idea, Code
 
 Made with ❤ at TinkerHub Useless Projects
 
