@@ -23,11 +23,43 @@ let searchTerm = '';
 // Initialize the game
 document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("searchBtn").addEventListener("click", startRandomGame);
+    
+    // Add music controls
+    setupMusicControls();
 });
+
+function setupMusicControls() {
+    // Add a music toggle button
+    const musicToggle = document.createElement('button');
+    musicToggle.id = 'musicToggle';
+    musicToggle.innerHTML = '🔊';
+    musicToggle.className = 'music-toggle';
+    musicToggle.title = 'Toggle Music';
+    
+    musicToggle.addEventListener('click', () => {
+        const music = document.getElementById('gravitySuitTheme');
+        if (music) {
+            if (music.paused) {
+                music.play().catch(e => {
+                    console.log('Music play failed:', e);
+                });
+                musicToggle.innerHTML = '🔊';
+            } else {
+                music.pause();
+                musicToggle.innerHTML = '🔇';
+            }
+        }
+    });
+    
+    document.body.appendChild(musicToggle);
+}
 
 function startRandomGame() {
     searchTerm = document.getElementById("search").value.trim();
     if (!searchTerm) return;
+
+    // Transition to pixel mode
+    enablePixelMode();
 
     // Show the game area
     document.querySelector('.game-area').style.display = 'block';
@@ -45,6 +77,62 @@ function startRandomGame() {
         startLifoGame();
     } else {
         startCageGame();
+    }
+}
+
+function enablePixelMode() {
+    document.body.classList.add('pixel-mode');
+    document.querySelector('.game-container').classList.add('pixel-mode');
+    document.querySelector('h1').classList.add('pixel-mode');
+    document.getElementById('search').classList.add('pixel-mode');
+    document.getElementById('searchBtn').classList.add('pixel-mode');
+    
+    // Play Gravity Suit theme music
+    const music = document.getElementById('gravitySuitTheme');
+    if (music) {
+        music.volume = 0; // Start silent for fade-in
+        music.currentTime = 0; // Start from beginning
+        music.play().catch(e => {
+            console.log('Music autoplay blocked:', e);
+        });
+        
+        // Fade in the music
+        let volume = 0;
+        const targetVolume = 0.3;
+        const fadeInterval = setInterval(() => {
+            volume += 0.01;
+            if (volume >= targetVolume) {
+                volume = targetVolume;
+                clearInterval(fadeInterval);
+            }
+            music.volume = volume;
+        }, 50);
+    }
+}
+
+function disablePixelMode() {
+    document.body.classList.remove('pixel-mode');
+    document.querySelector('.game-container').classList.remove('pixel-mode');
+    document.querySelector('h1').classList.remove('pixel-mode');
+    document.getElementById('search').classList.remove('pixel-mode');
+    document.getElementById('searchBtn').classList.remove('pixel-mode');
+    document.querySelector('.game-area').style.display = 'none';
+    
+    // Stop Gravity Suit theme music with fade-out
+    const music = document.getElementById('gravitySuitTheme');
+    if (music) {
+        // Fade out the music
+        let volume = music.volume;
+        const fadeInterval = setInterval(() => {
+            volume -= 0.02;
+            if (volume <= 0) {
+                volume = 0;
+                clearInterval(fadeInterval);
+                music.pause();
+                music.currentTime = 0;
+            }
+            music.volume = volume;
+        }, 50);
     }
 }
 
@@ -74,17 +162,17 @@ function startEliminationGame() {
         div.innerText = randomItems[Math.floor(Math.random() * randomItems.length)];
         div.dataset.correct = "false";
 
-        // Runaway fix logic
-        if (Math.random() < 0.3) {
+        // Runaway fix logic - increased probability
+        if (Math.random() < 0.7) {
             div.classList.add("runaway");
             let dodgeCount = 0;
             div.addEventListener("mouseover", () => {
-                if (dodgeCount < 3) {
+                if (dodgeCount < 5) {
                     dodgeCount++;
-                    const offsetX = (Math.random() - 0.5) * 200;
-                    const offsetY = (Math.random() - 0.5) * 200;
+                    const offsetX = (Math.random() - 0.5) * 300;
+                    const offsetY = (Math.random() - 0.5) * 300;
                     div.style.transform = `translate(${offsetX}px, ${offsetY}px)`;
-                    div.style.transition = "transform 0.3s ease";
+                    div.style.transition = "transform 0.2s ease";
                 }
             });
         }
@@ -101,7 +189,16 @@ function startEliminationGame() {
         if (!e.target.classList.contains("result")) return;
         const isCorrect = e.target.dataset.correct === "true";
 
-        if (!isCorrect) {
+        if (isCorrect) {
+            // Check if other items still exist
+            let remaining = [...resultsContainer.children];
+            if (remaining.length > 1) {
+                showPixelNotification("You need to eliminate all the wrong results first!");
+                return;
+            }
+            // If only correct remains, show results
+            showSearchResults(searchTerm);
+        } else {
             e.target.style.animation = "fadeOut 0.5s ease";
             setTimeout(() => {
                 e.target.remove();
@@ -173,7 +270,7 @@ function makeDraggable(element) {
             const itemsOnTop = stackItems.slice(0, correctIndex);
             
             if (itemsOnTop.length > 0) {
-                alert("You need to remove the items on top first!");
+                showPixelNotification("You need to remove the items on top first!");
                 return;
             }
         }
@@ -322,9 +419,39 @@ function startCageGame() {
             <div class="bar"></div>
             <div class="bar"></div>
             <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
         </div>
         <div class="cage-content">
-            <div class="locked-item">${searchTerm}</div>
+            <div class="locked-item" onclick="handleLockedItemClick()">${searchTerm}</div>
             <div class="lock">🔒</div>
         </div>
     `;
@@ -391,6 +518,7 @@ function makeKeyDraggable(keyElement) {
     let isDragging = false;
     let startX, startY;
     let originalX, originalY;
+    let currentX, currentY;
 
     keyElement.addEventListener('mousedown', startDrag);
     document.addEventListener('mousemove', drag);
@@ -404,6 +532,8 @@ function makeKeyDraggable(keyElement) {
         const rect = keyElement.getBoundingClientRect();
         originalX = rect.left;
         originalY = rect.top;
+        currentX = originalX;
+        currentY = originalY;
         
         keyElement.style.position = 'fixed';
         keyElement.style.zIndex = '1000';
@@ -411,6 +541,8 @@ function makeKeyDraggable(keyElement) {
         keyElement.style.top = originalY + 'px';
         keyElement.style.transition = 'none';
         keyElement.style.cursor = 'grabbing';
+        keyElement.style.transform = 'scale(1.1) rotate(5deg)';
+        keyElement.style.filter = 'drop-shadow(0 8px 16px rgba(0,0,0,0.3))';
         
         e.preventDefault();
     }
@@ -421,8 +553,14 @@ function makeKeyDraggable(keyElement) {
         const deltaX = e.clientX - startX;
         const deltaY = e.clientY - startY;
         
-        keyElement.style.left = (originalX + deltaX) + 'px';
-        keyElement.style.top = (originalY + deltaY) + 'px';
+        currentX = originalX + deltaX;
+        currentY = originalY + deltaY;
+        
+        // Use requestAnimationFrame for ultra-smooth dragging
+        requestAnimationFrame(() => {
+            keyElement.style.left = currentX + 'px';
+            keyElement.style.top = currentY + 'px';
+        });
     }
 
     function endDrag(e) {
@@ -430,6 +568,8 @@ function makeKeyDraggable(keyElement) {
         
         isDragging = false;
         keyElement.style.cursor = 'grab';
+        keyElement.style.transform = '';
+        keyElement.style.filter = '';
         
         // Check if dropped on the cage
         const cage = document.querySelector('.cage');
@@ -444,17 +584,18 @@ function makeKeyDraggable(keyElement) {
             // Unlock the cage!
             unlockCage();
             
-            // Remove the key
-            keyElement.style.transition = 'all 0.4s ease';
-            keyElement.style.transform = 'scale(0) rotate(180deg)';
+            // Remove the key with smooth animation
+            keyElement.style.transition = 'all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            keyElement.style.transform = 'scale(0) rotate(360deg)';
             keyElement.style.opacity = '0';
+            keyElement.style.filter = 'drop-shadow(0 0 20px rgba(255, 193, 7, 0.8))';
             
             setTimeout(() => {
                 keyElement.remove();
-            }, 400);
+            }, 800);
         } else {
-            // Return to original position
-            keyElement.style.transition = 'all 0.4s ease';
+            // Return to original position with smooth animation
+            keyElement.style.transition = 'all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
             keyElement.style.left = '';
             keyElement.style.top = '';
             keyElement.style.position = '';
@@ -462,7 +603,7 @@ function makeKeyDraggable(keyElement) {
             
             setTimeout(() => {
                 keyElement.style.transition = '';
-            }, 400);
+            }, 600);
         }
     }
 }
@@ -484,13 +625,53 @@ function unlockCage() {
     }, 500);
 }
 
+function showPixelNotification(message) {
+    // Remove any existing notification
+    const existingNotification = document.querySelector('.pixel-notification');
+    if (existingNotification) {
+        existingNotification.remove();
+    }
+    
+    const notification = document.createElement('div');
+    notification.className = 'pixel-notification';
+    notification.innerHTML = `
+        <div class="notification-content">
+            <div class="notification-icon">⚠️</div>
+            <div class="notification-text">${message}</div>
+        </div>
+    `;
+    
+    document.body.appendChild(notification);
+    
+    // Animate in
+    setTimeout(() => {
+        notification.classList.add('show');
+    }, 10);
+    
+    // Remove after 3 seconds
+    setTimeout(() => {
+        notification.classList.remove('show');
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
+    }, 3000);
+}
+
+function handleLockedItemClick() {
+    const cage = document.querySelector('.cage');
+    if (!cage.classList.contains('unlocked')) {
+        showPixelNotification("You need to unlock the cage first!");
+        return;
+    }
+    showSearchResults(searchTerm);
+}
+
 function showSearchResults(searchTerm) {
+    // Return to normal mode
+    disablePixelMode();
+    
     const searchResultsContainer = document.getElementById("searchResults");
     searchResultsContainer.style.display = "block";
-    
-    // Hide the game areas
-    document.getElementById("eliminationGame").style.display = "none";
-    document.getElementById("lifoGame").style.display = "none";
     
     // Get a random sample paragraph
     const randomParagraph = sampleParagraphs[Math.floor(Math.random() * sampleParagraphs.length)];

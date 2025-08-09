@@ -22,6 +22,23 @@ A playful and frustrating search engine that makes finding what you're looking f
 
 Simply open `index.html` in your web browser to start playing!
 
+## 🎵 Music Feature
+
+The search engine includes the **Gravity Suit theme from Jetpack Joyride** that plays when transitioning to pixel mode!
+
+### Adding the Music File:
+
+1. **Download the Gravity Suit theme** from Jetpack Joyride (or use your own 8-bit music)
+2. **Save it as** `gravity-suit-theme.mp3` in the project root directory
+3. **Alternative format** - also supports `gravity-suit-theme.ogg`
+
+### Music Controls:
+
+- **Automatic playback** when entering pixel mode
+- **Music toggle button** (🔊/🔇) in the top-left corner
+- **Automatic stop** when returning to normal mode
+- **Volume set to 30%** for comfortable listening
+
 ## The Challenge
 
 This search engine is designed to be inconvenient on purpose. The correct result is always there, but finding it requires patience, precision, and a sense of humor. Can you find what you're searching for?
