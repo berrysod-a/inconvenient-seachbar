@@ -1,26 +1,33 @@
-🔍 Inconvenient Search Engine
+![Thappanam](https://raw.githubusercontent.com/berrysod-a/inconvenient-seachbar/refs/heads/main/useless.png)
+
+# 🔍 Search Engine
 
 A playful and frustrating search engine that makes finding what you're looking for intentionally difficult!
+
+## Team Members:
+- **Nicole Mercy Daison** - Christ College of Engineering
+- **Theresa Antony** - Christ College of Engineering
+
+## Project Description
+This is a search engine that delivers results no-one asked for. What looks like a normal search engine at first glance, turns into a pixelated inconvenient game experience.
 
 ## How it works
 
 1. **Search for anything** - Type in your search term and click "Search"
-2. **Find the correct result** - Your search term will appear as a green box among 10 random wrong answers
-3. **Deal with the chaos** - Some wrong results will "run away" when you hover over them, making them even harder to click
-4. **Eliminate wrong answers** - Click on wrong results to remove them
-5. **Claim your victory** - Once only the correct result remains, click it to celebrate!
+2. **Enter pixel mode** - The interface transforms into a retro gaming experience
+3. **Play mini-games** - Complete one of three random mini-games:
+   - **🎯 Elimination Challenge** - Click wrong results to eliminate them
+   - **📚 Stack Puzzle** - Drag items out of stack (LIFO)
+   - **🔒 Cage Puzzle** - Find key to unlock cage
+4. **Claim your victory** - Complete the game to see your search results
 
 ## Features
 
-- 🎯 One correct result (your search term) in green
-- 🎲 10 random wrong results from a curated list of absurd items
-- 🏃‍♂️ Some results "run away" when you hover over them (30% chance)
-- 🎮 Interactive click-to-eliminate gameplay
-- 🎉 Victory celebration when you find the correct result
-
-## Try it out
-
-Simply open `index.html` in your web browser to start playing!
+- **Three mini-games** with different mechanics
+- **Pixel art aesthetic** with retro gaming vibes
+- **Smooth transitions** between normal and pixel modes
+- **Interactive gameplay** with drag-and-drop mechanics
+- **🎵 Music integration** with Gravity Suit theme from Jetpack Joyride
 
 ## 🎵 Music Feature
 
@@ -38,6 +45,11 @@ The search engine includes the **Gravity Suit theme from Jetpack Joyride** that 
 - **Music toggle button** (🔊/🔇) in the top-left corner
 - **Automatic stop** when returning to normal mode
 - **Volume set to 30%** for comfortable listening
+- **Smooth fade-in/fade-out** effects
+
+## Try it out
+
+Simply open `index.html` in your web browser to start playing!
 
 ## The Challenge
 
