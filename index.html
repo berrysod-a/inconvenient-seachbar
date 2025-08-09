@@ -42,21 +42,70 @@
         background: lightgreen;
         cursor: not-allowed;
     }
+    #searchResults {
+        margin-top: 20px;
+        text-align: left;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+        display: none;
+    }
+    .searchResult {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        margin-bottom: 20px;
+    }
+    .resultTitle {
+        color: #1a0dab;
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 8px;
+        text-decoration: none;
+    }
+    .resultTitle:hover {
+        text-decoration: underline;
+    }
+    .resultUrl {
+        color: #006621;
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+    .resultSnippet {
+        color: #545454;
+        font-size: 14px;
+        line-height: 1.4;
+    }
 </style>
 </head>
 <body>
 
-<h1>🔍 Inconvenient Search Engine</h1>
+    <h1>🔍 Search Engine</h1>
 <input type="text" id="search" placeholder="Search anything...">
 <button id="searchBtn">Search</button>
 
 <div id="results"></div>
+
+<div id="searchResults"></div>
 
 <script>
 const randomItems = [
     "Banana", "Laptop", "Dog memes", "Pineapple pizza", "Toaster", 
     "Shoelaces", "Rubber duck", "Potato chips", "Alien invasion", 
     "Penguin care tips", "Expired milk", "Sock collection", "Unicorn tax laws"
+];
+
+const sampleParagraphs = [
+    "This comprehensive guide explores the fascinating world of modern technology and its impact on everyday life. From smartphones to artificial intelligence, we examine how these innovations are reshaping the way we work, communicate, and live. The rapid pace of technological advancement continues to surprise even the most seasoned experts in the field.",
+    
+    "Research has shown that maintaining a healthy lifestyle involves a combination of regular exercise, balanced nutrition, and adequate sleep. Studies indicate that individuals who follow these principles tend to have better mental health, increased energy levels, and improved overall well-being. Experts recommend starting with small, manageable changes.",
+    
+    "The history of human civilization spans thousands of years, marked by remarkable achievements in art, science, and culture. Ancient civilizations laid the foundation for modern society through their innovations in agriculture, architecture, and governance. These early developments continue to influence contemporary thinking and practices.",
+    
+    "Environmental conservation has become increasingly important as we face global challenges like climate change and biodiversity loss. Scientists emphasize the need for sustainable practices that balance human needs with ecological preservation. Community involvement and education play crucial roles in achieving long-term environmental goals.",
+    
+    "The culinary arts represent one of humanity's most creative expressions, combining science, culture, and tradition. Chefs around the world continue to push boundaries, creating new flavors and techniques that delight diners and inspire future generations. Food culture serves as a bridge between different societies and traditions."
 ];
 
 document.getElementById("searchBtn").addEventListener("click", () => {
@@ -118,12 +167,44 @@ document.getElementById("searchBtn").addEventListener("click", () => {
                 let winner = remaining[0];
                 winner.style.cursor = "pointer";
                 winner.addEventListener("click", () => {
-                    alert(`✅ You found "${term}"!`);
+                    showSearchResults(term);
                 }, { once: true });
             }
         }
     });
 });
+
+function showSearchResults(searchTerm) {
+    const searchResultsContainer = document.getElementById("searchResults");
+    searchResultsContainer.style.display = "block";
+    
+    // Hide the game results
+    document.getElementById("results").style.display = "none";
+    
+    // Get a random sample paragraph
+    const randomParagraph = sampleParagraphs[Math.floor(Math.random() * sampleParagraphs.length)];
+    
+    // Create Google-like search result
+    const resultHTML = `
+        <div class="searchResult">
+            <a href="#" class="resultTitle">${searchTerm} - Complete Information and Guide</a>
+            <div class="resultUrl">https://www.example.com/${searchTerm.toLowerCase().replace(/\s+/g, '-')}</div>
+            <div class="resultSnippet">${randomParagraph}</div>
+        </div>
+        <div class="searchResult">
+            <a href="#" class="resultTitle">Everything You Need to Know About ${searchTerm}</a>
+            <div class="resultUrl">https://www.info-site.com/${searchTerm.toLowerCase().replace(/\s+/g, '-')}</div>
+            <div class="resultSnippet">Discover comprehensive information about ${searchTerm}. Learn about its history, applications, and current developments. This resource provides detailed insights and practical knowledge for anyone interested in this topic.</div>
+        </div>
+        <div class="searchResult">
+            <a href="#" class="resultTitle">${searchTerm} - Latest News and Updates</a>
+            <div class="resultUrl">https://www.news-portal.com/${searchTerm.toLowerCase().replace(/\s+/g, '-')}</div>
+            <div class="resultSnippet">Stay updated with the latest developments and news related to ${searchTerm}. Our team of experts provides timely analysis and insights on current trends and future prospects in this field.</div>
+        </div>
+    `;
+    
+    searchResultsContainer.innerHTML = resultHTML;
+}
 </script>
 
 </body>
