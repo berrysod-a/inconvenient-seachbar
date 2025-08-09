@@ -26,3 +26,8 @@ We at Doofenschmirtz Inc. brings a solution to this by giving you the results yo
 ## Project Documentation
 
 ## Screenshots
+![firstuseless](https://github.com/user-attachments/assets/cae8d3dc-35b4-4694-86ca-5502a0f762a8)
+
+![seconduseless](https://github.com/user-attachments/assets/2c94788f-5a24-4465-a64d-e54126962013)
+
+![thirduseless](https://github.com/user-attachments/assets/09c6edbe-5a8e-4c0e-b22f-241267eebe88)
